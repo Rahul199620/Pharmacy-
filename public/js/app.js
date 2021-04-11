@@ -2004,6 +2004,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2016,15 +2061,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
       axios.post('./api/Projects/', this.form).then(function (res) {
         console.log("res", res.data);
+        _this.form.project_name = null, _this.form.description = null, _this.getProjects();
       });
     },
     getProjects: function getProjects() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("./api/Projects").then(function (response) {
-        _this.Project = response.data;
+        _this2.Project = response.data;
+      });
+    },
+    edit: function edit(id) {
+      var _this3 = this;
+
+      axios.get("./api/Projects/" + id).then(function (response) {
+        _this3.form.project_name = response.data.project_name;
+        _this3.form.description = response.data.description;
+      });
+    },
+    update: function update(id) {
+      var _this4 = this;
+
+      axios.put("./api/Projects/" + id, this.form).then(function (response) {
+        _this4.getProjects();
       });
     }
   },
@@ -37839,12 +37902,120 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "myModal" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "card card-info" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.update($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "name" }
+                      },
+                      [_vm._v("Project Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-10" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.project_name,
+                            expression: "form.project_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", name: "project_name" },
+                        domProps: { value: _vm.form.project_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "project_name",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-sm-2 col-form-label",
+                        attrs: { for: "description" }
+                      },
+                      [_vm._v("Description")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-10" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.description,
+                            expression: "form.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "description", name: "description" },
+                        domProps: { value: _vm.form.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "description",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(4)
+        ])
+      ])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
-      _vm._m(2),
+      _vm._m(5),
       _vm._v(" "),
       _c("div", { staticClass: "card-body table-responsive p-0" }, [
         _c("table", { staticClass: "table table-hover" }, [
-          _vm._m(3),
+          _vm._m(6),
           _vm._v(" "),
           _c(
             "tbody",
@@ -37854,7 +38025,27 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(Proj.project_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(Proj.description))])
+                _c("td", [_vm._v(_vm._s(Proj.description))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#myModal"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.edit(Proj.id)
+                        }
+                      }
+                    },
+                    [_vm._v("\r\n  Edit\r\n")]
+                  )
+                ])
               ])
             }),
             0
@@ -37888,6 +38079,39 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Create Project")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c("button", { staticClass: "btn btn-info", attrs: { type: "submit" } }, [
+        _vm._v("update")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-title" }, [_vm._v("Projects list")])
     ])
   },
@@ -37901,7 +38125,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Project Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")])
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Modify")])
       ])
     ])
   }

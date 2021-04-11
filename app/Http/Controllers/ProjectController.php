@@ -61,7 +61,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Projects=Project::find($id);
+        return response()->json($Projects);
     }
 
     /**
@@ -73,7 +74,11 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Projects=Project::find($id);
+        $Projects->project_name= $request->project_name;
+        $Projects->description= $request->description;
+        $Projects->update();
+        return response()->json(['message'=>'updated'],200);
     }
 
     /**
