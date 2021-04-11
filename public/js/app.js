@@ -1971,9 +1971,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      Project: {},
       form: {
         project_name: "",
         description: ""
@@ -1985,7 +2019,17 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('./api/Projects/', this.form).then(function (res) {
         console.log("res", res.data);
       });
+    },
+    getProjects: function getProjects() {
+      var _this = this;
+
+      axios.get("./api/Projects").then(function (response) {
+        _this.Project = response.data;
+      });
     }
+  },
+  created: function created() {
+    this.getProjects();
   },
   mounted: function mounted() {
     console.log("Component mounted");
@@ -37702,96 +37746,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card card-info" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "form-horizontal",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.submit($event)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "card card-info" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "form-horizontal",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
           }
-        }
-      },
-      [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "form-group row" }, [
-            _c(
-              "label",
-              {
-                staticClass: "col-sm-2 col-form-label",
-                attrs: { for: "name" }
-              },
-              [_vm._v("Project Name")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-10" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.project_name,
-                    expression: "form.project_name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", name: "project_name" },
-                domProps: { value: _vm.form.project_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-2 col-form-label",
+                  attrs: { for: "name" }
+                },
+                [_vm._v("Project Name")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.project_name,
+                      expression: "form.project_name"
                     }
-                    _vm.$set(_vm.form, "project_name", $event.target.value)
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "project_name" },
+                  domProps: { value: _vm.form.project_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "project_name", $event.target.value)
+                    }
                   }
-                }
-              })
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-2 col-form-label",
+                  attrs: { for: "description" }
+                },
+                [_vm._v("Description")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.description,
+                      expression: "form.description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "description", name: "description" },
+                  domProps: { value: _vm.form.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "description", $event.target.value)
+                    }
+                  }
+                })
+              ])
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group row" }, [
-            _c(
-              "label",
-              {
-                staticClass: "col-sm-2 col-form-label",
-                attrs: { for: "description" }
-              },
-              [_vm._v("Description")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-10" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.description,
-                    expression: "form.description"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "description", name: "description" },
-                domProps: { value: _vm.form.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "description", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ]
-    )
+          _vm._m(1)
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body table-responsive p-0" }, [
+        _c("table", { staticClass: "table table-hover" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.Project, function(Proj) {
+              return _c("tr", { key: Proj.id }, [
+                _c("td", [_vm._v(_vm._s(Proj.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(Proj.project_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(Proj.description))])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -37810,6 +37880,28 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-footer" }, [
       _c("button", { staticClass: "btn btn-info", attrs: { type: "submit" } }, [
         _vm._v("Create")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Projects list")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("S.NO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Project Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")])
       ])
     ])
   }

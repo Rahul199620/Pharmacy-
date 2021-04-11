@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Create Project</h3>
@@ -27,6 +28,38 @@
                 <!-- /.card-footer -->
               </form>
             </div>
+
+           <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Projects list</h3>
+
+                
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>S.NO</th>
+                      <th>Project Name</th>
+                      <th>Description</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="Proj in Project" :key="Proj.id">
+                      <td>{{Proj.id}}</td>
+                      <td>{{Proj.project_name}}</td>
+                      <td>{{Proj.description}}</td>
+                     
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div> 
+</div>
+            
 </template>
 <script>
 
@@ -36,24 +69,37 @@ export default({
     data(){
 
             return{
+                   Project:{},
               form:{
                     project_name:"",
-                     description:"",
+                    description:"",
                 
-              }
+              },
+                   
             }
 
     },
      methods:{
-       submit(){
-          axios.post('./api/Projects/',this.form).then(res=>{
-            console.log("res",res.data)
-          });
+                 submit(){
+                     axios.post('./api/Projects/',this.form).then(res=>{
+                      console.log("res",res.data)
+                 });
 
-           }
+           },
+           getProjects(){
+             axios.get("./api/Projects").then((response)=>{
+                       this.Project=response.data
+                     })
+
+     }
+
+     
 
      },
-  
+     
+   created() {
+            this.getProjects();
+        },
      mounted(){
        console.log("Component mounted")
      }
