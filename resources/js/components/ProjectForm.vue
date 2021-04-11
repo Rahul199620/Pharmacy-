@@ -43,7 +43,20 @@ export default({
               }
             }
 
-    }
+    },
+     methods:{
+       submit(){
+          axios.post('./api/Projects/',this.form).then(res=>{
+            console.log("res",res.data)
+          });
+
+           }
+
+     },
   
+     mounted(){
+       console.log("Component mounted")
+     }
+
 })
 </script>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Project;
 class ProjectController extends Controller
 {
     /**
@@ -34,7 +34,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Projects = new Project;
+        $Projects->project_name= $request->project_name;
+        $Projects->description= $request->description;
+        $Projects->save();
+        return response()->json(['message'=>'saved'],200);
     }
 
     /**

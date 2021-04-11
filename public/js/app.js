@@ -1979,6 +1979,16 @@ __webpack_require__.r(__webpack_exports__);
         description: ""
       }
     };
+  },
+  methods: {
+    submit: function submit() {
+      axios.post('./api/Projects/', this.form).then(function (res) {
+        console.log("res", res.data);
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log("Component mounted");
   }
 });
 
