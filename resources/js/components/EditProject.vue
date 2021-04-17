@@ -31,6 +31,9 @@
                      </div>
                      <!-- /.card-footer -->
                   </form>
+                  <div v-if="update_success" class="alert alert-success">
+                           <strong>Success!</strong>Project updated.
+                          </div>
                </div>
             </div>
             <div class="modal-footer">
@@ -47,14 +50,17 @@
                return{
                     project_name:"",
                     description:"",  
-                   }                                
+                    update_success:false,
+                   } 
+                                            
           },
             methods:{
                update() {var self=this
              axios.put('/api/Projects/' + self.manufacture.id, {
              'project_name':self.manufacture.project_name,
              'description':self.manufacture.description,
-       })
+             }).then(response=>{
+             self.update_success=true})
    
    } 
             }

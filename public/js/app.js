@@ -1950,12 +1950,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['manufacture'],
   data: function data() {
     return {
       project_name: "",
-      description: ""
+      description: "",
+      update_success: false
     };
   },
   methods: {
@@ -1964,6 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.put('/api/Projects/' + self.manufacture.id, {
         'project_name': self.manufacture.project_name,
         'description': self.manufacture.description
+      }).then(function (response) {
+        self.update_success = true;
       });
     }
   }
@@ -37929,7 +37935,14 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(1)
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _vm.update_success
+                ? _c("div", { staticClass: "alert alert-success" }, [
+                    _c("strong", [_vm._v("Success!")]),
+                    _vm._v("Project updated.\n                       ")
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
