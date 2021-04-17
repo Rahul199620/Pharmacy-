@@ -1950,10 +1950,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['manufacture'],
   data: function data() {
@@ -2101,6 +2097,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectForm",
@@ -2115,7 +2120,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       Project: {},
       errors: {},
-      ManufactureEdit: {}
+      ManufactureEdit: {},
+      message: false
     };
   },
   methods: {
@@ -2134,7 +2140,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var self = this;
       axios.post('./api/Projects/', this.form).then(function (response) {
-        console.log(response);
+        self.message = true, console.log(response);
         self.getProjects();
       }, function (error) {
         console.log(error);
@@ -37825,11 +37831,9 @@ var render = function() {
     [
       _c("div", { staticClass: "modal-dialog" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
-          _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
             _c("div", { staticClass: "card card-info" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "form",
@@ -37923,36 +37927,19 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(1)
                 ]
               )
             ])
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(2)
         ])
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("×")]
-      ),
-      _vm._v(" "),
-      _c("h4", { staticClass: "modal-title" }, [_vm._v("Modal Header")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -38120,6 +38107,21 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
+                          _vm.errors.project_name
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "alert alert-danger",
+                                  attrs: { errors: _vm.errors }
+                                },
+                                [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(_vm.errors.project_name[0]))
+                                  ])
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
                           _c("div", { staticClass: "form-group row" }, [
                             _c(
                               "label",
@@ -38160,12 +38162,34 @@ var render = function() {
                                 }
                               })
                             ])
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _vm.errors.description
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "alert alert-danger",
+                                  attrs: { errors: _vm.errors }
+                                },
+                                [
+                                  _c("strong", [
+                                    _vm._v(_vm._s(_vm.errors.description[0]))
+                                  ])
+                                ]
+                              )
+                            : _vm._e()
                         ]),
                         _vm._v(" "),
                         _vm._m(1)
                       ]
-                    )
+                    ),
+                    _vm._v(" "),
+                    _vm.message
+                      ? _c("div", { staticClass: "alert alert-success" }, [
+                          _c("strong", [_vm._v("Success!")]),
+                          _vm._v("Project created.\n                       ")
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _vm._m(2)
@@ -38277,7 +38301,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Projects list")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Projects List")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c(

@@ -20,12 +20,18 @@
                                        <input type="text" class="form-control" name="project_name" v-model="form.project_name">
                                     </div>
                                  </div>
-                                 <div class="form-group row">
+                                 <div class="alert alert-danger" v-if="errors.project_name" :errors="errors">
+                                 <strong>{{ errors.project_name[0] }}</strong> 
+                                </div>
+                                <div class="form-group row">
                                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
                                        <input type="description" class="form-control" name="description" v-model="form.description"> 
                                     </div>
                                  </div>
+                                <div class="alert alert-danger" v-if="errors.description" :errors="errors">
+                                 <strong>{{ errors.description[0] }}</strong> 
+                                </div>
                               </div>
                               <!-- /.card-body -->
                               <div class="card-footer">
@@ -33,6 +39,9 @@
                               </div>
                               <!-- /.card-footer -->
                            </form>
+                           <div v-if="message" class="alert alert-success">
+                           <strong>Success!</strong>Project created.
+                          </div>
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -44,7 +53,7 @@
             </div>
             <div class="card">
                <div class="card-header">
-                  <h3 class="card-title">Projects list</h3>
+                  <h3 class="card-title">Projects List</h3>
                   <div class="card-tools">
                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Project">
                      Create Project
@@ -97,7 +106,8 @@
                  },
                    Project:{},
                       errors:{},
-                      ManufactureEdit:{},                   
+                      ManufactureEdit:{},
+                      message:false,                   
                }
        },
         methods:{
@@ -117,6 +127,7 @@
                submit(){
                         var self=this
                         axios.post('./api/Projects/',this.form).then(response=>{
+                           self.message=true,
                           console.log(response);
                           self.getProjects();
                        },(error) => {
