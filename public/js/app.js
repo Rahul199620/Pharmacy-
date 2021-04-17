@@ -2097,6 +2097,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectForm",
@@ -38052,7 +38056,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row mt-4" }, [
       _c(
         "div",
         { staticClass: "col-sm-8" },
@@ -38162,18 +38166,20 @@ var render = function() {
                         _vm._m(1)
                       ]
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
                 ])
               ])
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "card-body table-responsive p-0" }, [
               _c("table", { staticClass: "table table-hover" }, [
-                _vm._m(3),
+                _vm._m(4),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -38202,7 +38208,7 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-primary",
+                            staticClass: "btn btn-primary ml-2",
                             attrs: {
                               type: "button",
                               "data-toggle": "modal",
@@ -38249,6 +38255,21 @@ var staticRenderFns = [
       _c("button", { staticClass: "btn btn-info", attrs: { type: "submit" } }, [
         _vm._v("Create")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
     ])
   },
   function() {

@@ -1,6 +1,6 @@
 <template>
    <div class="container">
-      <div class="row">
+      <div class="row mt-4">
          <div class="col-sm-8">
             <div class="modal" id="Project">
                <div class="modal-dialog">
@@ -34,6 +34,10 @@
                               <!-- /.card-footer -->
                            </form>
                         </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
                      </div>
                   </div>
                </div>
@@ -63,7 +67,7 @@
                            <td>{{Proj.id}}</td>
                            <td>{{Proj.project_name}}</td>
                            <td>{{Proj.description}}</td>
-                           <td><button  @click="RemoveManufacturer(Proj.id)" type="button" class="btn btn-danger" >Delete</button><button  @click="EditManufacturer(Proj.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal">Edit
+                           <td><button  @click="RemoveManufacturer(Proj.id)" type="button" class="btn btn-danger" >Delete</button><button  @click="EditManufacturer(Proj.id)" type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#editmodal">Edit
                               </button>
                            </td>
                         </tr>
