@@ -1954,10 +1954,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['manufacture'],
   data: function data() {
@@ -2091,6 +2087,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProjectForm",
@@ -2115,10 +2121,17 @@ __webpack_require__.r(__webpack_exports__);
         self.ManufactureEdit = response.data;
       });
     },
+    RemoveManufacturer: function RemoveManufacturer(id) {
+      var self = this;
+      axios["delete"]('./api/Projects/' + id).then(function (response) {
+        self.getProjects();
+      });
+    },
     submit: function submit() {
       var self = this;
       axios.post('./api/Projects/', this.form).then(function (response) {
         console.log(response);
+        self.getProjects();
       }, function (error) {
         console.log(error);
         self.errors = error.response.data.errors;
@@ -38038,150 +38051,186 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("div", { staticClass: "card card-info" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass: "form-horizontal",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.submit($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-2 col-form-label",
-                    attrs: { for: "name" }
-                  },
-                  [_vm._v("Project Name")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-10" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.project_name,
-                        expression: "form.project_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", name: "project_name" },
-                    domProps: { value: _vm.form.project_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "project_name", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-2 col-form-label",
-                    attrs: { for: "description" }
-                  },
-                  [_vm._v("Description")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-10" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.description,
-                        expression: "form.description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "description", name: "description" },
-                    domProps: { value: _vm.form.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "description", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body table-responsive p-0" }, [
-          _c("table", { staticClass: "table table-hover" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.Project, function(Proj) {
-                return _c("tr", { key: Proj.id }, [
-                  _c("td", [_vm._v(_vm._s(Proj.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(Proj.project_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(Proj.description))]),
-                  _vm._v(" "),
-                  _c("td", [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "col-sm-8" },
+        [
+          _c("div", { staticClass: "modal", attrs: { id: "Project" } }, [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "card card-info" }, [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
                     _c(
-                      "button",
+                      "form",
                       {
-                        staticClass: "btn btn-primary",
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "modal",
-                          "data-target": "#editmodal"
-                        },
+                        staticClass: "form-horizontal",
                         on: {
-                          click: function($event) {
-                            return _vm.EditManufacturer(Proj.id)
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submit($event)
                           }
                         }
                       },
-                      [_vm._v("\r\n  Edit\r\n")]
+                      [
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-sm-2 col-form-label",
+                                attrs: { for: "name" }
+                              },
+                              [_vm._v("Project Name")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-10" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.project_name,
+                                    expression: "form.project_name"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", name: "project_name" },
+                                domProps: { value: _vm.form.project_name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "project_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group row" }, [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-sm-2 col-form-label",
+                                attrs: { for: "description" }
+                              },
+                              [_vm._v("Description")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-10" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.description,
+                                    expression: "form.description"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "description",
+                                  name: "description"
+                                },
+                                domProps: { value: _vm.form.description },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "description",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]
                     )
                   ])
                 ])
-              }),
-              0
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("EditProject", { attrs: { manufacture: _vm.ManufactureEdit } })
-    ],
-    1
-  )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c("table", { staticClass: "table table-hover" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.Project, function(Proj) {
+                    return _c("tr", { key: Proj.id }, [
+                      _c("td", [_vm._v(_vm._s(Proj.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(Proj.project_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(Proj.description))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                return _vm.RemoveManufacturer(Proj.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#editmodal"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.EditManufacturer(Proj.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit\n                           ")]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("EditProject", { attrs: { manufacture: _vm.ManufactureEdit } })
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -38207,7 +38256,22 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Projects list")])
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Projects list")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#Project"
+            }
+          },
+          [_vm._v("\n                  Create Project\n                  ")]
+        )
+      ])
     ])
   },
   function() {
@@ -38222,7 +38286,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Modify")])
+        _c("th", [_vm._v("Action")])
       ])
     ])
   }

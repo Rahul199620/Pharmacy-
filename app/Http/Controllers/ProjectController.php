@@ -82,6 +82,7 @@ class ProjectController extends Controller
         $Projects->project_name= $request->project_name;
         $Projects->description= $request->description;
         $Projects->update();
+        return response()->json('The project successfully updated');
         
     }
 
@@ -93,6 +94,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post =Project::find($id);
+        $post->delete();
+        return response()->json('The project successfully deleted');
     }
 }
