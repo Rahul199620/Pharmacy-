@@ -60,6 +60,18 @@ export default {
                  description:"",  
                 }
                                  
-       }
+       },
+         methods:{
+
+            update() {var self=this
+    axios.put('/api/Projects/' + self.manufacture.id, {
+          'project_name':self.manufacture.project_name,
+          'description':self.manufacture.description,
+    })
+
+         
+
 } 
+         }
+}
 </script>

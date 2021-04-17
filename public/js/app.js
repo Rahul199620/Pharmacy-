@@ -1965,6 +1965,15 @@ __webpack_require__.r(__webpack_exports__);
       project_name: "",
       description: ""
     };
+  },
+  methods: {
+    update: function update() {
+      var self = this;
+      axios.put('/api/Projects/' + self.manufacture.id, {
+        'project_name': self.manufacture.project_name,
+        'description': self.manufacture.description
+      });
+    }
   }
 });
 
