@@ -2095,10 +2095,17 @@ __webpack_require__.r(__webpack_exports__);
         description: ""
       },
       Project: {},
-      errors: {}
+      errors: {},
+      ManufactureEdit: {}
     };
   },
   methods: {
+    EditManufacturer: function EditManufacturer(id) {
+      var self = this;
+      axios.get('./api/modify/' + id).then(function (response) {
+        self.ManufactureEdit = response.data;
+      });
+    },
     submit: function submit() {
       var self = this;
       axios.post('./api/Projects/', this.form).then(function (response) {
@@ -38135,7 +38142,25 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(Proj.description))]),
                   _vm._v(" "),
-                  _vm._m(4, true)
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#editmodal"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.EditManufacturer(Proj.id)
+                          }
+                        }
+                      },
+                      [_vm._v("\r\n  Edit\r\n")]
+                    )
+                  ])
                 ])
               }),
               0
@@ -38144,7 +38169,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("EditProject")
+      _c("EditProject", { attrs: { manufacture: _vm.ManufactureEdit } })
     ],
     1
   )
@@ -38190,25 +38215,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Modify")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#editmodal"
-          }
-        },
-        [_vm._v("\r\n  Edit\r\n")]
-      )
     ])
   }
 ]

@@ -53,7 +53,7 @@
                       <td>{{Proj.id}}</td>
                       <td>{{Proj.project_name}}</td>
                       <td>{{Proj.description}}</td> 
-                      <td><button   type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal">
+                      <td><button  @click="EditManufacturer(Proj.id)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editmodal">
   Edit
 </button></td> 
                     
@@ -63,7 +63,7 @@
               </div>
               <!-- /.card-body -->
             </div> 
-            <EditProject></EditProject>
+            <EditProject v-bind:manufacture="ManufactureEdit"></EditProject>
 </div>
             
 </template>
@@ -86,11 +86,20 @@ export default{
               },
                 Project:{},
                    errors:{},
+                   ManufactureEdit:{},
                    
             }
 
     },
      methods:{
+
+            EditManufacturer(id){
+                        var self=this
+                         axios.get('./api/modify/'+ id).then(response=>{
+                         self.ManufactureEdit=response.data
+                     })
+
+            },
             submit(){
                      var self=this
                      axios.post('./api/Projects/',this.form).then(response=>{

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('Projects', 'ProjectController');
-
+Route::get('/modify/{id}', 'ProjectController@edit');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
