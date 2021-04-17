@@ -35,6 +35,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'project_name' => 'required',
+            'description' => 'required',
+        ]);
         $Projects = new Project;
         $Projects->project_name= $request->project_name;
         $Projects->description= $request->description;
@@ -62,7 +66,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $Projects=Project::find($id);
-        return response()->json($Projects);
+        return $Projects;
     }
 
     /**
@@ -78,7 +82,7 @@ class ProjectController extends Controller
         $Projects->project_name= $request->project_name;
         $Projects->description= $request->description;
         $Projects->update();
-        return response()->json(['message'=>'updated'],200);
+        
     }
 
     /**
