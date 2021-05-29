@@ -23,7 +23,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <input type="submit" class="btn btn-info">
+                  <input type="submit" class="btn btn-info" @click.prevent="SubmitForm">
                   <input type="reset" class="btn btn-info" value="cancel">
                 </div>
                 <!-- /.card-footer -->
