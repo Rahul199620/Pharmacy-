@@ -1949,8 +1949,20 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         specialization: "",
         age: ""
-      }
+      },
+      errors: {}
     };
+  },
+  methods: {
+    SubmitForm: function SubmitForm() {
+      var self = this;
+      axios.post('doctors', self.form).then(function (response) {
+        console.log(response);
+      }, function (error) {
+        console.log(error);
+        self.errors = error.response.data.errors;
+      });
+    }
   }
 });
 

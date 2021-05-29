@@ -40,9 +40,23 @@ export default {
                 name:"",
                 specialization:"",
                 age:"",
-            }
+            },
+             errors:{}
         }
-    }
+    },
+     methods:{
+           SubmitForm:function(){
+               var self=this
+                        axios.post('doctors',self.form).then(response=>{
+                           
+                          console.log(response);
+                          
+                       },(error) => {
+                         console.log(error);
+                         self.errors=error.response.data.errors
+   });
+           }
+     }
 }
 </script>
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Doctor;
 class DoctorController extends Controller
 {
     /**
@@ -26,6 +26,18 @@ class DoctorController extends Controller
         //
     }
 
+    private function save(Request $request)
+    {
+        $doctor=Doctor::FindOrNew($request->form_id);
+
+        $doctor->name = $request->name;
+        $doctor->specialization = $request->specialization;
+        $doctor->age= $request->age;
+        $doctor->save();
+        return ['doctor' =>$doctor];
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +46,7 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->save($request);
     }
 
     /**

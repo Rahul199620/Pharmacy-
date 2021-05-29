@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {   
-    $timestamps = false;
+    public $timestamps = false;
     protected $fillable = ['name','specialization','age'];
 }
