@@ -1899,6 +1899,63 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['formId'],
+  data: function data() {
+    return {
+      form: {
+        form_id: 0,
+        name: "",
+        specialization: "",
+        age: ""
+      }
+    };
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorList.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Doctor/DoctorList.vue?vue&type=script&lang=js& ***!
@@ -37907,33 +37964,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", { staticClass: "form-horizontal" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
-      _c("input", {
-        staticClass: "btn btn-info",
-        attrs: { type: "submit" },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.SubmitForm($event)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "btn btn-info",
-        attrs: { type: "reset", value: "cancel" }
-      })
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
+    _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "form-group row" }, [
         _c(
           "label",
@@ -37942,7 +37973,27 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-10" }, [
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.name,
+                expression: "form.name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "name", $event.target.value)
+              }
+            }
+          })
         ])
       ]),
       _vm._v(" "),
@@ -37957,7 +38008,27 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-10" }, [
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.specialization,
+                expression: "form.specialization"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.specialization },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "specialization", $event.target.value)
+              }
+            }
+          })
         ])
       ]),
       _vm._v(" "),
@@ -37969,12 +38040,58 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-10" }, [
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.age,
+                expression: "form.age"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.age },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "age", $event.target.value)
+              }
+            }
+          })
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" }, [
+      _c("input", {
+        staticClass: "btn btn-info",
+        attrs: { type: "submit" },
+        domProps: { value: _vm.form.form_id > 0 ? "Update" : "Save" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.SubmitForm($event)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "btn btn-info",
+        attrs: { type: "reset", value: "cancel" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.resetform($event)
+          }
+        }
+      })
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37996,7 +38113,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container mt-4" }, [
     _vm.openForm
       ? _c("div", { staticClass: "card- wrap" }, [
           _c("div", { staticClass: "card card-info" }, [
@@ -38009,7 +38126,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header" }, [
-        _c("h3", { staticClass: "card-title" }, [_vm._v("Doctor List")]),
+        _c("strong", [_vm._v("Doctor List")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-tools" }, [
           _c(
@@ -50876,15 +50993,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DoctorForm_vue_vue_type_template_id_9a6e8d90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DoctorForm.vue?vue&type=template&id=9a6e8d90& */ "./resources/js/components/Doctor/DoctorForm.vue?vue&type=template&id=9a6e8d90&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _DoctorForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DoctorForm.vue?vue&type=script&lang=js& */ "./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DoctorForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _DoctorForm_vue_vue_type_template_id_9a6e8d90___WEBPACK_IMPORTED_MODULE_0__["render"],
   _DoctorForm_vue_vue_type_template_id_9a6e8d90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -50898,6 +51017,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Doctor/DoctorForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DoctorForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Doctor/DoctorForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DoctorForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

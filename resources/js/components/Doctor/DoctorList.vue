@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mt-4">
          
         <div class="card- wrap" v-if=openForm>
             <div class="card card-info">
@@ -13,7 +13,7 @@
         </div>
       <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Doctor List</h3>
+                 <strong>Doctor List</strong>
 
                 <div class="card-tools">
                   <button class="btn-info"  @click.prevent="openForm=!openForm">New Doctor</button>
