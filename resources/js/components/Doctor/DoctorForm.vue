@@ -5,6 +5,9 @@
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" v-model="form.name">
+                      <div class="alert" v-if="errors.name" :errors="errors">
+                                 <strong>{{ errors.name[0] }}</strong> 
+                                </div>
                     </div>
                   </div>
                   <div class="form-group row">

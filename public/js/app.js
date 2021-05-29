@@ -1940,6 +1940,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['formId'],
   data: function data() {
@@ -38005,7 +38008,15 @@ var render = function() {
                 _vm.$set(_vm.form, "name", $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors.name
+            ? _c(
+                "div",
+                { staticClass: "alert", attrs: { errors: _vm.errors } },
+                [_c("strong", [_vm._v(_vm._s(_vm.errors.name[0]))])]
+              )
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),

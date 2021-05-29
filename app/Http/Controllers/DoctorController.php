@@ -28,6 +28,10 @@ class DoctorController extends Controller
 
     private function save(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|unique:doctors,name,' .$request->form_id
+            
+        ]);
         $doctor=Doctor::FindOrNew($request->form_id);
 
         $doctor->name = $request->name;
