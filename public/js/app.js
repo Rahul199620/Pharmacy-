@@ -38147,7 +38147,7 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card mt-4" }, [
       _c("div", { staticClass: "card-header" }, [
         _c("strong", [_vm._v("Doctor List")]),
         _vm._v(" "),

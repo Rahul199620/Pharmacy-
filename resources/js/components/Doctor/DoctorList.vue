@@ -11,7 +11,7 @@
               </div>    
             </div>
         </div>
-      <div class="card">
+      <div class="card mt-4">
               <div class="card-header">
                  <strong>Doctor List</strong>
 
