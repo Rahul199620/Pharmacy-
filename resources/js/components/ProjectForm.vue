@@ -118,12 +118,14 @@
                         })
    
                },
+
                RemoveManufacturer(id){
                            var self=this
                            axios.delete('./api/Projects/' + id).then(function (response) {
                            self.getProjects();    
      });
                },
+
                submit(){
                         var self=this
                         axios.post('./api/Projects/',this.form).then(response=>{

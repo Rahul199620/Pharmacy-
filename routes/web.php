@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/project', function () {
     return view('project');
 });
+
+
+
+Route::resource('doctors', 'DoctorController');
