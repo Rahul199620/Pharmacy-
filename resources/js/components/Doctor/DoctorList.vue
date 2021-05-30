@@ -32,11 +32,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
+                    <tr v-for="item in list" :key="item.id">
+                      <td>{{item.id}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.specialization}}</td>
+                      <td>{{item.age}}</td>
                       
                     </tr>
                     
@@ -58,8 +58,27 @@ export default {
    data(){
        return{
              openForm:false,
+             list:{}
 
        }
-   }
+   },
+   methods:{
+           getDoctors:function(){
+               var self=this
+                        axios.get('doctors',self.form).then(response=>{
+                            self.list=response.data.doctors
+                          console.log(response);
+                          
+                       });
+ 
+           }
+     },
+     mounted(){
+        console.log('mounted');
+     },
+     created(){
+       this.getDoctors();
+     }
+   
 }
 </script>

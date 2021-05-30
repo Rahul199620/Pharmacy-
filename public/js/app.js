@@ -2039,8 +2039,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      openForm: false
+      openForm: false,
+      list: {}
     };
+  },
+  methods: {
+    getDoctors: function getDoctors() {
+      var self = this;
+      axios.get('doctors', self.form).then(function (response) {
+        self.list = response.data.doctors;
+        console.log(response);
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log('mounted');
+  },
+  created: function created() {
+    this.getDoctors();
   }
 });
 
@@ -38168,7 +38184,27 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "card-body table-responsive p-0" }, [
+        _c("table", { staticClass: "table table-hover" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.list, function(item) {
+              return _c("tr", { key: item.id }, [
+                _c("td", [_vm._v(_vm._s(item.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.specialization))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.age))])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -38185,35 +38221,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body table-responsive p-0" }, [
-      _c("table", { staticClass: "table table-hover" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("S.no")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Doctor Name")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Specialization")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Age")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("S.no")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("183")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("John Doe")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("11-7-2014")]),
-            _vm._v(" "),
-            _c("td", [
-              _c("span", { staticClass: "tag tag-success" }, [
-                _vm._v("Approved")
-              ])
-            ])
-          ])
-        ])
+        _c("th", [_vm._v("Doctor Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Specialization")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Age")])
       ])
     ])
   }
