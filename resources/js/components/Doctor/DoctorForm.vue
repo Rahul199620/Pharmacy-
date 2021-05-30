@@ -58,7 +58,24 @@ export default {
                          console.log(error);
                          self.errors=error.response.data.errors
    });
+           },
+           editDoctor:function(id){
+               var self=this
+                        axios.get('doctors' + '/' + self.formId + '/edit').then(response=>{
+                            var doctor=response.data.doctor
+                            self.form=response.data.doctor
+                            self.form.form_id=doctor.id;
+                            
+                            
+                          
+                       });
+ 
            }
+     },
+     mounted:function(){var self=this
+       if(self.formId > 0){
+         self.editDoctor();
+       }
      }
 }
 </script>

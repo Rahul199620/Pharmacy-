@@ -79,7 +79,8 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $doctor=Doctor::findOrFail($id);
+        return ['doctor'=>$doctor];
     }
 
     /**
@@ -91,7 +92,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->save($request);
     }
 
     /**

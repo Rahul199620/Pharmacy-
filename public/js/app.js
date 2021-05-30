@@ -1965,6 +1965,21 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
         self.errors = error.response.data.errors;
       });
+    },
+    editDoctor: function editDoctor(id) {
+      var self = this;
+      axios.get('doctors' + '/' + self.formId + '/edit').then(function (response) {
+        var doctor = response.data.doctor;
+        self.form = response.data.doctor;
+        self.form.form_id = doctor.id;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var self = this;
+
+    if (self.formId > 0) {
+      self.editDoctor();
     }
   }
 });
@@ -2032,6 +2047,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2039,6 +2058,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      form_id: 0,
       openForm: false,
       list: {}
     };
@@ -2050,6 +2070,10 @@ __webpack_require__.r(__webpack_exports__);
         self.list = response.data.doctors;
         console.log(response);
       });
+    },
+    editDoctor: function editDoctor(id) {
+      var self = this;
+      self.form_id = id;
     }
   },
   mounted: function mounted() {
@@ -38158,7 +38182,12 @@ var render = function() {
           _c("div", { staticClass: "card card-info" }, [
             _vm._m(0),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [_c("doctor-form")], 1)
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [_c("doctor-form", { attrs: { "form-id": _vm.form_id } })],
+              1
+            )
           ])
         ])
       : _vm._e(),
@@ -38198,7 +38227,28 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.specialization))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.age))])
+                _c("td", [_vm._v(_vm._s(item.age))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-info",
+                      on: {
+                        click: [
+                          function($event) {
+                            $event.preventDefault()
+                            _vm.openForm = !_vm.openForm
+                          },
+                          function($event) {
+                            return _vm.editDoctor(item.id)
+                          }
+                        ]
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  )
+                ])
               ])
             }),
             0
@@ -38229,7 +38279,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Specialization")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Age")])
+        _c("th", [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Action")])
       ])
     ])
   }

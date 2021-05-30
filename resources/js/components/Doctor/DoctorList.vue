@@ -7,7 +7,9 @@
               <strong>Doctor Form</strong>
               </div>
               <div class="card-body">
-                  <doctor-form></doctor-form>
+                  <doctor-form
+                  :form-id="form_id"
+                  ></doctor-form>
               </div>    
             </div>
         </div>
@@ -28,6 +30,7 @@
                       <th>Doctor Name</th>
                       <th>Specialization</th>
                       <th>Age</th>
+                      <th>Action</th>
                       
                     </tr>
                   </thead>
@@ -37,6 +40,7 @@
                       <td>{{item.name}}</td>
                       <td>{{item.specialization}}</td>
                       <td>{{item.age}}</td>
+                      <td><button class="btn btn-info" @click.prevent="openForm=!openForm"  @click="editDoctor(item.id)">Edit</button></td>
                       
                     </tr>
                     
@@ -57,6 +61,7 @@ export default {
   },
    data(){
        return{
+             form_id:0,
              openForm:false,
              list:{}
 
@@ -68,10 +73,15 @@ export default {
                         axios.get('doctors',self.form).then(response=>{
                             self.list=response.data.doctors
                           console.log(response);
-                          
+                             
                        });
  
+           },
+           editDoctor:function(id){
+             var self=this
+             self.form_id=id
            }
+
      },
      mounted(){
         console.log('mounted');
