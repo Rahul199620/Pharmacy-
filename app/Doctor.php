@@ -8,4 +8,6 @@ class Doctor extends Model
 {   
     public $timestamps = false;
     protected $fillable = ['name','specialization','age'];
+
+    
 }

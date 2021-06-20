@@ -26,3 +26,4 @@ Route::get('/project', function () {
 
 
 Route::resource('doctors', 'DoctorController');
+Route::resource('patients', 'PatientController');

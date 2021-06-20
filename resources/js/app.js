@@ -26,7 +26,12 @@ Vue.component('project-form', require('./components/projectForm.vue').default);
 
 
 Vue.component('doctor-list', require('./components/Doctor/DoctorList.vue').default);
+Vue.component('patient-list', require('./components/Patient/PatientList.vue').default);
 
+
+
+
+Vue.component('doctor-select', require('./components/SelectComponents/DoctorSelect.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
